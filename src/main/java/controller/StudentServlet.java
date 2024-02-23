@@ -136,8 +136,6 @@ public class StudentServlet extends HttpServlet {
         String phone = req.getParameter("phone");
         int course = Integer.parseInt(req.getParameter("course"));
         Student student = new Student(name,mail,dob,address,phone,course);
-        studentService.editStudent(student);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("student/edit.jsp");
-        dispatcher.forward(req,resp);
+        studentService.addStudent(student);
     }
 }

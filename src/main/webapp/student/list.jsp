@@ -2,22 +2,22 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-    <title>Home Page</title>
+    <title>Student Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <center>
-    <h2>
         <form method="get">
             <input type="hidden" value="search"/>
             <input type="hidden" name="action" value="search"/>
             <input type="text" name="c" placeholder="Search by name"/>
             <button type="submit">Search</button>
         </form>
-        <a href="/student?action=create">Add New</a>
-    </h2>
+    <h3><a href="/student?action=create">Add New</a></h3>
 </center>
 <div align="center">
-    <table border="1" cellpadding="5">
+    <table class="table table-striped">
         <tr>
             <th>Name</th>
             <th>Email</th>
