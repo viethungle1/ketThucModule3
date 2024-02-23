@@ -26,7 +26,7 @@
             <tr>
                 <th>Date Of Birth:</th>
                 <td>
-                    <input type="text" name="dob" size="45" value="<c:out value='${student.dateOfBirth}'/>"/>
+                    <input type="text" name="dob" size="45" value="<c:out value='${student.dob}'/>"/>
                 </td>
             </tr>
             <tr>

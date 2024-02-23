@@ -10,7 +10,7 @@
         <form method="get">
             <input type="hidden" value="search"/>
             <input type="hidden" name="action" value="search"/>
-            <input type="text" name="c"/>
+            <input type="text" name="c" placeholder="Search by name"/>
             <button type="submit">Search</button>
         </form>
         <a href="/student?action=create">Add New</a>

@@ -99,18 +99,36 @@ public class StudentServlet extends HttpServlet {
         if (action==null){
             action="";
         }
-        switch (action) {
-            case "create":
-                createNewStudent(req, resp);
-                showData(req, resp);
-                break;
-            case "edit":
-                updateStudent(req, resp);
-                break;
+        try {
+            switch (action) {
+                case "create":
+                    createNewStudent(req, resp);
+                    showData(req, resp);
+                    break;
+                case "edit":
+                    updateStudent(req, resp);
+                    showData(req, resp);
+                    break;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
+
     }
 
-    private void updateStudent(HttpServletRequest req, HttpServletResponse resp) {
+    private void updateStudent(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+        int id = Integer.parseInt(req.getParameter("id"));
+        String name = req.getParameter("name");
+        String mail = req.getParameter("mail");
+        String dob = req.getParameter("dob");
+        String address = req.getParameter("address");
+        String phone = req.getParameter("phone");
+        int course = Integer.parseInt(req.getParameter("course"));
+        Student student = new Student(id,name,mail,dob,address,phone,course);
+        studentService.editStudent(student);
+    }
+
+    private void createNewStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
         String name = req.getParameter("name");
         String mail = req.getParameter("mail");
         String dob = req.getParameter("dob");
@@ -118,19 +136,8 @@ public class StudentServlet extends HttpServlet {
         String phone = req.getParameter("phone");
         int course = Integer.parseInt(req.getParameter("course"));
         Student student = new Student(name,mail,dob,address,phone,course);
-
-
-
-    }
-
-    private void createNewStudent(HttpServletRequest req, HttpServletResponse resp) {
-        String name = req.getParameter("name");
-        String mail = req.getParameter("mail");
-        String dob = req.getParameter("dob");
-        String address = req.getParameter("address");
-        String phone = req.getParameter("phone");
-        int course = Integer.parseInt(req.getParameter("course"));
-        Student student = new Student(name,mail,dob,address,phone,course);
-        studentService.addStudent(student);
+        studentService.editStudent(student);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("student/edit.jsp");
+        dispatcher.forward(req,resp);
     }
 }
